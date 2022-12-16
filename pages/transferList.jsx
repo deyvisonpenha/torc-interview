@@ -106,11 +106,3 @@ export default function TransferList() {
     </Box>
   );
 }
-
-// <Button variant="text" onClick={()=> moveItem(item, index, index-1)}>
-//                   <ArrowBackIos fontSize="small" color={index > 0 ? "primary" : "disabled"}/>
-//                 </Button>
-//               {item}
-//                 <Button variant="text" onClick={()=>  moveItem(item, index, index-1)}>
-//                   <ArrowForwardIos fontSize="small" color={index < lists.length-1 ? "primary" : "disabled"}/>
-//                 </Button>
