@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -6,7 +6,7 @@ import { ArrowBackIos, ArrowForwardIos } from "@mui/icons-material";
 import Button from "@mui/material/Button";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
-import Paper from '@mui/material/Paper';
+import Paper from "@mui/material/Paper";
 
 export default function TransferList() {
   const [lists, setLists] = useState([
@@ -14,6 +14,10 @@ export default function TransferList() {
     { title: "food", items: ["bread", "chicken"] },
     { title: "List 1", items: ["item 1", "item2"] },
   ]);
+
+  useEffect(() => {
+    randColor();
+  }, []);
 
   function handleAddItem(index) {
     const input = window.prompt("Add new item");
@@ -31,22 +35,34 @@ export default function TransferList() {
     setLists(newLists);
   }
 
-  const randColor = () =>  {
-    return "#" + Math.floor(Math.random()*16777215).toString(16).padStart(6, '0').toUpperCase();
-}
+  const randColor = () => {
+    // Get all the list items
+    const listItems = document.querySelectorAll("h1");
+
+    // Set the background color of each list item to the random color
+    listItems.forEach((item) => {
+      // Generate a random color
+      const randomColor =
+        "#" + Math.floor(Math.random() * 16777215).toString(16);
+      item.style.backgroundColor = randomColor;
+    });
+  };
 
   return (
     <Box sx={{ display: "flex", gap: 10 }}>
       {lists.map((list, index) => (
-        <Paper elevation={4} sx={{display:"flex", flexDirection: "column", width: 400 }} key={list.title}>
+        <Paper
+          elevation={4}
+          sx={{ display: "flex", flexDirection: "column", width: 400 }}
+          key={list.title}
+        >
           <Typography
             component="h1"
             sx={{
               fontSize: "1.5rem",
               py: 1,
               color: "#fff",
-              backgroundColor: randColor(),
-              textAlign: "center"
+              textAlign: "center",
             }}
           >
             {list.title}
@@ -75,7 +91,7 @@ export default function TransferList() {
                   />
                 </Button>
                 <Typography
-                  component="h1"
+                  component="h2"
                   sx={{
                     fontSize: "1rem",
                   }}
@@ -100,7 +116,13 @@ export default function TransferList() {
               </ListItem>
             ))}
           </List>
-          <Button sx={{justifySelf: "center", mx: 6, my: 3}} variant="outlined" onClick={() => handleAddItem(index)}>+ Add a Task</Button>
+          <Button
+            sx={{ justifySelf: "center", mx: 6, my: 3 }}
+            variant="outlined"
+            onClick={() => handleAddItem(index)}
+          >
+            + Add a Task
+          </Button>
         </Paper>
       ))}
     </Box>
