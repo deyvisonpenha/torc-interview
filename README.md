@@ -10,6 +10,6 @@ npm run dev
 yarn dev
 ```
 After that you can go to the url
-Open [http://localhost:3000/transferList](http://localhost:3000/transferList) with your browser to see the result.
+Open [http://localhost:3000/](http://localhost:3000/) with your browser to see the result.
 
 You can start editing the page by modifying `pages/transferList.jsx`. The page auto-updates as you edit the file.

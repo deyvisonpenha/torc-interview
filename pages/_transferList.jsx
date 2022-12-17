@@ -28,10 +28,11 @@ export default function TransferList() {
 
   function moveItem(item, fromIndex, toIndex) {
     const newLists = [...lists];
+    const itemIndex = newLists[fromIndex].items.findIndex((i)=> i===item);
     newLists[fromIndex].items = newLists[fromIndex].items.filter(
       (i) => i !== item
     );
-    newLists[toIndex].items.unshift(item);
+    newLists[toIndex].items.splice(itemIndex, 0, item);
     setLists(newLists);
   }
 
